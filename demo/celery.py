@@ -5,6 +5,9 @@ from celery import Celery
 
 from demo.CONFIGS import BROKER_URL
 
-app = Celery('tasks', 
-             broker=os.environ.get('celery_demo_broker', BROKER_URL))
-app.conf.CELERY_ALWAYS_EAGER = True
+app = Celery('demo', 
+             broker=os.environ.get('celery_demo_broker', BROKER_URL),
+             include=['demo.tasks'])
+
+app.config_from_object('demo.celeryconfig')
+
