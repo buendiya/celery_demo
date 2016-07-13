@@ -2,3 +2,6 @@
 .project
 .pydevproject
 CONFIGS.py
+/celerybeat-schedule
+*.log
+*.eclipse.core.resources.prefs
