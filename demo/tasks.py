@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 import json
+import time
 import random
 
 from logging.handlers import RotatingFileHandler
@@ -16,6 +17,7 @@ logger.addHandler(file_handler)
 
 @app.task(bind=True)
 def add(self, x, y):
+    # time.sleep(100)
     # logger.info(json.dumps(self.request.__dict__, indent=4))
     logger.info('hello, world')
     return x + y
