@@ -9,10 +9,12 @@ from logging.handlers import RotatingFileHandler
 
 from demo.celery import app
 from celery.utils.log import get_task_logger
-from .CONFIGS import DEBUG_FILE
+from celery.app.log import TaskFormatter
+from .CONFIGS import DEBUG_LOG
 
 logger = get_task_logger(__name__)
-file_handler = RotatingFileHandler(DEBUG_FILE)
+file_handler = RotatingFileHandler(DEBUG_LOG)
+file_handler.setFormatter(TaskFormatter(app.conf.CELERYD_TASK_LOG_FORMAT))
 logger.addHandler(file_handler)
 
 logger.parent.setLevel(logging.DEBUG)

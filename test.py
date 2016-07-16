@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
-from demo.tasks import add, retry_demo_task
+from demo.tasks import add, retry_task
+from demo.celery import app
 
 
 def test_add():
@@ -8,8 +9,10 @@ def test_add():
 
 
 def test_retry():
-    retry_demo_task.delay()
+    retry_task.delay()
     
+def get_conf():
+    print app.conf
 
 if __name__ == '__main__':
     test_add()
