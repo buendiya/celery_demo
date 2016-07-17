@@ -1,7 +1,10 @@
 from __future__ import absolute_import
 
+from logging.config import dictConfig
+
 from demo.tasks import add, retry_task
 from demo.celery import app
+from demo.celeryconfig import LOGGING
 
 
 def test_add():
@@ -13,6 +16,9 @@ def test_retry():
     
 def get_conf():
     print app.conf
+
+def test_log_config():
+    dictConfig(LOGGING)
 
 if __name__ == '__main__':
     test_add()

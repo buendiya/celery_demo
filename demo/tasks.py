@@ -16,11 +16,9 @@ logger = get_task_logger(__name__)
 file_handler = RotatingFileHandler(DEBUG_LOG)
 file_handler.setFormatter(TaskFormatter(app.conf.CELERYD_TASK_LOG_FORMAT))
 logger.addHandler(file_handler)
-
 logger.parent.setLevel(logging.DEBUG)
 
-print logger.name
-print logger.parent.name
+# logger = logging.getLogger('common.logger')
 
 
 @app.task(bind=True)
